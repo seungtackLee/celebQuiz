@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mcMode</title>
+    <meta property="og:title" content="인물퀴즈">
+    <meta name="description" content="130명 업데이트! 직접 맞추는 타이핑 모드, 땡을 외칠 수 있는 MC모드">
+    <meta property="og:description" content="130명 업데이트! 직접 맞추는 타이핑 모드, 땡을 외칠 수 있는 MC모드">
+    <meta property="og:image" content="/img/한소희.jpeg">
+    <link rel="canonical" href="https://celebquiz.netlify.app/index.html">
+    <meta name="robots" content="index,follow">
+</head>
+<body class="container" style="text-align:center">
+    
+
+    <header>
+        <div class="m-5">
+            <p class="text-center fs-2" onclick="location.href='/'">인물 퀴즈</h3>
+            <p class="text-center fs-4 fw-lighter" onclick="location.href='/'">celebquiz.netlify.app</p>
+        </div>
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                      <a class="nav-link fs-4 fw-bold" onclick="location.href='/'">홈으로</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link fs-4" href="/typing.html">타이핑모드</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="/mcMode.html">MC모드</a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+        </div>
+    </header>
+
+
+    <center>
+        <div class="text-center m-3">
+            <img id="img" src="/img/한소희.jpeg" class="rounded col-12 img-responsive" alt="...">
+        </div>
+
+
+
+
+        <div>
+            <div class="btn-group m-2" role="group" aria-label="Basic example">
+                <button type="button" class="fs-5 m-1 btn btn-outline-primary" onclick="prev();">이전</button>
+                <button id="btnAns" type="button" class="fs-5 m-1 btn btn-outline-primary" onclick="showAns();">정답 보기</button>
+                <button type="button" class="fs-5 m-1 btn btn-outline-primary" onclick="next();">다음</button>
+              </div>
+        </div>
+
+
+
+        <div>
+            <p id="ans" class=" fs-2 m-2"></p>
+        </div>
+
+    </center>
+
+
+
+
+
+
+
+
+
+    <div class="p-5" style="margin : 200px 0 100px 0;">
+        <p class="text-center" style="color:grey">celebquiz.netlify.app</p>
+        <p class="text-center m-2" style="color:grey">버그, 인물 추가 등 문의 : dltmxor31@naver.com</p>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+
+    <script>
+        $("#ans").hide();
+
+
+
+
+        var arr = ["가비","강남","강하늘","강형욱","강호동","곽윤기","규현","기성용","기안84","기영이","길","김경호","김고은","김국진","김다미","김수로","김수현","김숙","김아랑","김연경","김연자","김영철","김종국","김태리","김희철","나연","남주혁","넉살","네이마르","노제",
+        "노홍철","다현","도끼","돈스파이크","드웨인존슨","로제","류승룡","류승범","리사","리정","립제이","메시","문세윤","박명수","박보검","박서준","박완규","박준형","박지성","박진영","백종원","봉준호","서장훈","선미","설현","손예진","손흥민","송가인","송민호","송지효","슈렉","스파이더맨",
+        "슬기","심슨","아이린","아이언맨","아이유","아이키","안정환","양세찬","양세형","엘사","염정아","예리","웬디","유아인","유재석","은지원","이경규","이경영","이광수","이만기","이문세","이상민","이상화","이선균","이수근","이용진","이진호","인어공주","임영웅","장윤정","전소미","전소민",
+        "전지현","전현무","정준하","정해인","정형돈","제니","제시","조승우","조여정","조이","조정석","조커","주현영","지드래곤","지석진","지성","지수","지코","최양락","추사랑","타노스","태양","태연","트럼프","펭수","푸","피오","피오나","하정우","하하","한소희","허재","헐크","현주엽",
+        "화사","황제성"];
+        var vis = [];
+        var ans=false;
+        var now=0;
+        
+        var size = arr.length;  
+        var num = Math.floor((Math.random()*size));
+        
+        vis.push(num);
+        document.getElementById("img").src = "/img/"+arr[num]+".jpeg";
+
+        function prev(){
+            ans=false;
+            document.getElementById("btnAns").innerHTML = "정답 보기";
+            $("#ans").hide();
+            
+            if(now-1>=0){
+                now--;
+                document.getElementById("img").src = "/img/"+arr[vis[now]]+".jpeg";
+            }
+        }
+
+        function showAns(){
+            if(ans==false){
+                ans=true;
+                document.getElementById("ans").innerHTML = arr[vis[now]];
+                $("#ans").show();
+                document.getElementById("btnAns").innerHTML = "정답 숨기기";
+            }
+            else{
+                ans=false;
+                $("#ans").hide();
+                document.getElementById("btnAns").innerHTML = "정답 보기";
+            }
+        }
+
+        function next(){
+            ans=false;
+            $("#ans").hide();
+            document.getElementById("btnAns").innerHTML = "정답 보기";
+
+            if(now+1<vis.length){
+                now++;
+                document.getElementById("img").src = "/img/"+arr[vis[now]]+".jpeg";
+            }
+            else{
+                do{
+                    num = Math.floor((Math.random()*size));
+                    
+                }while(vis.indexOf(num)>=0 && now+1<arr.length)
+    
+                vis.push(num);
+
+                now++;
+
+                document.getElementById("img").src = "/img/"+arr[vis[now]]+".jpeg";
+            }
+
+
+
+        }
+
+
+
+
+    </script>
+
+
+</body>
+</html>
